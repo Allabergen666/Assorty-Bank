@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block name_url %}
+<li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+<li><a href="/posts" class="nav-link px-2 text-white">Posts</a></li>
+<li><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+<li><a href="/anime" class="nav-link px-2 text-white">Anime</a></li>
+{% endblock %}
+
+
+{% block content %}
+<main role="main" class="card shadow-sm text-bg-dark" style="margin-top: 20px;">
+    <div class="jumbotron">
+        <div class="container align-items-center">
+            <div style="text-align: center; height: 300px; width: 800px;" class="align-items-center d-flex">
+                <a style="text-decoration: none;" href="/weather/almaty">
+                    <p style="margin: 5px;" class="card shadow-sm text-bg-dark">
+                        <b>Погода: {{ weather.city }} {{weather.temp }} {{ weather.desc }}</b>
+                    </p></a>
+                <img style="margin: 5px;" src="https://openweathermap.org/img/w/{{ weather.icon }}.png"
+                    class="text-bg-dark">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

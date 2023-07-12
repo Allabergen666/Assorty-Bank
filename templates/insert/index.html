@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Добавить Пост{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <form style="margin-top: 20px; margin-bottom: 20px; border-radius: 15px;" class="card shadow-sm text-bg-dark" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.image }}
+            {{ form.title }}
+            {{ form.description }}
+            {{ form.category }}
+            {{ form.location }}
+            <button class="btn btn-outline-light" style="width: 1190px; margin: 20px;" 
+            type="submit">{{ user.username }}: Опубликовать</button>
+            <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px; margin-top: 0;">Назад</a>  
+        </form>
+    {% else %}
+        <div class="album py-5 bg-body-tertiary card shadow-sm text-bg-dark" style="margin: 10px;">
+            <div class="container card shadow-sm text-bg-dark" style="padding: 20px;">
+                <h1 class="text-muted">
+                    Зарегистрируйтесь или Авторизуйтесь для того что-бы добавлять <b>Посты</b>
+                </h1>
+                <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px;">Назад</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

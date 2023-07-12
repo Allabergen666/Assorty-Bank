@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block name_url %}
+<li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+<li><a href="/posts" class="nav-link px-2 text-white">Posts</a></li>
+<li><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+<li><a href="/anime" class="nav-link px-2 text-white">Anime</a></li>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="card shadow-sm text-bg-dark" style="margin-top: 20px;">
+    <div class="jumbotron">
+        <div class="container align-items-center">
+            <div class="container align-items-center d-flex">
+                <a href="/weather/almaty" style="text-decoration: none;"><p style="margin: 5px;" class="card shadow-sm text-bg-dark"><b>Погода: {{ weather.city }} {{weather.temp }} {{ weather.desc }}</b></p></a>
+                <img style="margin: 5px;" src="https://openweathermap.org/img/w/{{ weather.icon }}.png"
+                    class="img-thumbnail card shadow-sm text-bg-dark">
+            </div>
+            <div class="container" style="display: flex; padding: 20px;">
+                {% for image in images %}
+                <img style="margin: 20px;" width="200px" src="{{image.image.url}}" class="shadow-lg rounded-pill">
+                {% endfor %}
+            </div>
+            <h3 class="display-4 lead">Добро пожаловать! Рады видеть вас здесь.</h3>
+            <p>Это шаблон для простого маркетингового или информационного веб-сайта. Он включает в себя большую выноску,
+                называемую jumbotron, и три вспомогательных фрагмента контента. Используйте его как отправную точку для
+                создания чего-то более уникального.</p><br>
+            <img width="1200px" class="container card shadow-lg text-bg-dark"
+                src="https://img2.akspic.ru/crops/5/8/5/3/7/173585/173585-svet-senku_isigami-doktor_kamen-anime-rukav-3840x2160.jpg"
+                alt="">
+        </div>
+    </div>
+
+    <hr>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            {% for text in texts %}
+            <div class="col-md-4">
+                <h2>{{text.title}}</h2>
+                <p>{{text.description}}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div> <!-- /container -->
+
+</main>
+{% endblock %}

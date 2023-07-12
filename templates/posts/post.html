@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Публикации{% endblock %}
+{% block name_url %}
+<li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+<li><a href="/posts" class="nav-link px-2 text-secondary">Posts</a></li>
+<li><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+<li><a href="/anime" class="nav-link px-2 text-white">Anime</a></li>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for i in context %}
+                <div class="col">
+                    <div class="card shadow-sm text-bg-dark">
+                        <img class="bd-placeholder-img card-img-top" width="100%" src="{{ i.image.url }}" focusable="false">
+                        <div class="card-body">
+                            <h4 class="card-text">{{ i.title }}</h4>
+                            <h6 class="card-text">Категория: {{ i.category }}</h6>
+                            <p class="card-text">{{ i.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="card-text">Место проведения: {{ i.location }}</p>
+                                <small class="text-body-secondary">{{ i.created_at }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

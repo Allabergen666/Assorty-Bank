@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Sing up{% endblock %}
+
+{% block content %}
+<form class="card shadow-sm text-bg-dark" method="post" 
+    style="width: 1240px; border-radius: 24px; margin: 30px;" 
+    enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.username }}
+    {{ form.first_name }}
+    {{ form.last_name }}
+    {{ form.email }}
+    {{ form.password }}
+    <input type="password" name="password2" 
+    style="margin: 20px; width: 1190px;"
+    class="form-control" placeholder="Repeat password" required>
+
+    <button class="btn btn-success" style="width: 1190px; margin: 20px;" 
+    type="submit">Зарегистрироваться</button>
+    <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px; margin-top: 0;">Назад</a>
+</form>
+{% endblock %}

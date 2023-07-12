@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Добавить категорию{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <main>
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for category in categories %}
+                    <div class="col">
+                        <div class="card shadow-sm text-bg-dark">
+                            <div class="card-body">
+                                <h4 class="card-text"><b>Категория:</b> {{ category.name }}</h4>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-body-secondary"><b>Дата создания:</b> {{ category.created_at }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <form style="margin-top: 20px; margin-bottom: 20px; border-radius: 15px;" class="card shadow-sm text-bg-dark" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.name }}
+        <button class="btn btn-outline-light" style="width: 1190px; margin: 20px;" 
+        type="submit">{{ user.username }}: Создать</button>
+        <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px; margin-top: 0;">Назад</a>  
+    </form>
+    {% else %}
+        <div class="album py-5 bg-body-tertiary card shadow-sm text-bg-dark" style="margin: 10px;">
+            <div class="container card shadow-sm text-bg-dark" style="padding: 20px;">
+                <h1 class="text-muted">
+                    Зарегистрируйтесь или Авторизуйтесь что-бы добавлять <b>Категории</b>
+                </h1>
+                <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px;">Назад</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

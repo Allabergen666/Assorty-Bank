@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Аниме{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/anime.css' %}">
+{% endblock %}
+
+{% block name_url %}
+<li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+<li><a href="/posts" class="nav-link px-2 text-white">Posts</a></li>
+<li><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+<li><a href="/anime" class="nav-link px-2 text-secondary">Anime</a></li>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for anime in animes %}
+                <div class="col">
+                    <div id="Anime-Div" class="card shadow-sm text-bg-dark">
+                        <img class="bd-placeholder-img card-img-top" width="100%" src="{{ anime.image }}" focusable="false">
+                        <div class="card-body">
+                            <h4 class="card-text">{{ anime.title }}</h4>
+                            <h6 class="card-text">Категория: {{ anime.category }}</h6>
+                            <p class="card-text">Описание: {{ anime.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-body-secondary">{{ anime.created_at }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+

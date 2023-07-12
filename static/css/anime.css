@@ -1,0 +1,9 @@
+#Anime-Div{
+    margin-top: 30px;
+    transition: 0.2s all;
+}
+#Anime-Div:hover{
+    margin: 20px;
+    margin-bottom: 30px;
+    transform: scale(1.1);
+}

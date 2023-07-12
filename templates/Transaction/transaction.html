@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Transaction User AssortyBank{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <main>
+        <div class="album py-5 bg-body-tertialy">
+            <div class="container">
+                {{form.sender}}
+                {{formrecipient}}
+                {{form.summa}}
+            </div>
+        </div>
+    </main>
+    {% else %}
+    <main>
+        <div class="album py-5 bg-body-tertialy">
+            <div class="container">
+                <h1>Пока вы в разработке!</h1>
+            </div>
+        </div>
+    </main>
+    {% endif %}
+{% endblock %}

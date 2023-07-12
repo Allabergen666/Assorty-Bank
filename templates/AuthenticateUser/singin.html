@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Sing in{% endblock %}
+
+{% block content %}
+<form class="card shadow-sm text-bg-dark" method="post" 
+    style="width: 1240px; border-radius: 24px; margin: 30px;" 
+    enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="username" 
+    style="margin: 20px; width: 1190px;"
+    class="form-control form-control-dark" placeholder="Username" required>
+
+    <input type="password" name="password" 
+    style="margin: 20px; width: 1190px;"
+    class="form-control form-control-dark" placeholder="Password" required>
+
+    <button class="btn btn-success" style="width: 1190px; margin: 20px; margin-bottom: 10px;" type="submit">Войти</button>
+    <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px; margin-top: 0;">Назад</a>
+</form>
+{% endblock %}

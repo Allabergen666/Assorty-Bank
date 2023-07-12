@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+
+{% block title %}Обновить Профиль{% endblock %}
+
+{% block name_url %}
+<li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+<li><a href="/posts" class="nav-link px-2 text-white">Posts</a></li>
+<li><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+<li><a href="/anime" class="nav-link px-2 text-white">Anime</a></li>
+{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="card mb-3" style="border-radius: .5rem;">
+                <div class="row g-0">
+                    <div class="col-md-4 text-center text-bg-secondary"
+                        style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                        {% if user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 140px; margin: 50px;" />
+                        {% else %}
+                        <img src="{% static 'img/profile.jpg' %}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 140px; margin: 50px;" />
+                        {% endif %}
+                        {{ form.image }}
+                        <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                        <p class="">
+                            <input type="text" style="margin: 20px;" name="username" id="Username" class="form-control text-bg-dark" placeholder="Username" value="{{ user.username }}" required>
+                        </p>
+                        <i class="far fa-edit mb-5"></i>
+                    </div>
+                    <div class="col-md-8 text-bg-secondary">
+                        <div class="card-body p-4">
+                            <h6>Information</h6>
+                            <hr class="mt-0 mb-4">
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                    <h6>Email</h6>
+                                    <p class="text-muted">
+                                        <input type="email" class="form-control text-bg-dark" name="email" id="feEmailAddress" placeholder="Email" value="{{ user.email }}">
+                                    </p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <h6>Phone</h6>
+                                    <p class="text-muted">{{ form.phone }}</p>
+                                </div>
+                            </div>
+                            <!-- <h6>Information</h6>
+                            <hr class="mt-0 mb-4"> -->
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                    <h6>About</h6>
+                                    <p class="text-muted">{{ form.about }}</p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <h6>Birth data</h6>
+                                    <p class="text-muted">{{ form.birth_date }}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                                <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                                <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 20px; width: 1190px">
+    <a href="/profile" type="button" class="btn btn-outline-light">Back</a>
+    <a href="/profile">
+        <button class="btn btn-success" type="submit">Save</button>
+    </a>
+</div>
+</form>
+{% endblock %}

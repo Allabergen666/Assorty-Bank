@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Добавить Пост{% endblock %}
+
+{% block name_url %}
+<li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+<li><a href="/posts" class="nav-link px-2 text-white">Posts</a></li>
+<li><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+<li><a href="/anime" class="nav-link px-2 text-white">Anime</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="container ">
+        <div style="border-radius: 15px; margin-top: 50px;" class="card-body p-4 text-bg-dark d-flex">
+
+            {% if qr_image_base64 %}
+                <img width="300px" src="{{ user.profile.image.url }}" class="rounded float-left" alt="Profile Photo">
+                <p style="padding: 50px;">QR code пользователя <b>{{ username }}</b><br><br>
+                    First and last name: {{ user.first_name }} {{ user.last_name }}<br>
+                    Email: {{user.email}}<br>
+                    Phone: {{ user.profile.phone }}<br>
+                    Birth: {{ user.profile.birth_date }}<br>
+                </p>
+                <img width="300px" 
+                style="position: absolute; right: 350px;" 
+                class="rounded float-right" 
+                src="data:image/png;base64,{{ qr_image_base64 }}" 
+                alt="Profile QR Code">
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
